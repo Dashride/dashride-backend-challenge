@@ -1,0 +1,29 @@
+dr-challenge-api:
+    build: .
+    environment:
+        - NODE_ENV=local
+        - PORT=4000
+        - MONGO_HOST=dr-challenge-mongo
+        - MONGO_PORT=27017
+        - MONGO_DB_NAME=dr-challenge
+    ports:
+        - '4000:4000'
+    entrypoint:
+        - npm
+        - run
+        - start-dev
+    links:
+        - dr-challenge-mongo
+    volumes:
+        - .:/usr/src/app
+        - /usr/src/node_modules
+    restart: on-failure
+
+dr-challenge-mongo:
+    image: mongo:3.4
+    ports:
+        - '27017:27017'
+    volumes:
+        - ./db/backup:/data/configdb
+        - ./db/mongodb:/data/db
+    restart: on-failure
