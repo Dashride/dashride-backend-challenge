@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node ./app",
     "start-dev": "nodemon --watch app app/index.js | bunyan",
-    "test": "./node_modules/mocha/bin/mocha 'app/**/*.spec.js' 'app/**/*.e2e.js'"
+    "test": "./node_modules/mocha/bin/mocha 'app/**/*.spec.js' 'app/**/*.e2e.js'",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -29,12 +31,14 @@
     "express": "^4.14.0",
     "helmet": "^3.4.0",
     "method-override": "^2.3.7",
-    "mongoose": "^4.7.8"
+    "mongoose": "^4.7.8",
+    "snyk": "^1.41.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "supertest": "^2.0.1"
-  }
+  },
+  "snyk": true
 }
